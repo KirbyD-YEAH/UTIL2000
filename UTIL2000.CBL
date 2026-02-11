@@ -3,8 +3,9 @@
       ***************************************************************** 00030000
       *  Programmer.: Kirby Dunker                                      00040001
       *  Date.......: 2/10/2026                                         00050001
-      *  GitHub URL.:                                                   00060000
-      *  Description:                                                   00070000
+      *  GitHub URL.: https://github.com/KirbyD-YEAH/UTIL2000           00060000
+      *  Description: This program calculates and displays              00070000
+      *  customer electric bills.   
       ***************************************************************** 00080000
        DATA DIVISION.                                                   00090000
        WORKING-STORAGE SECTION.                                         00100000
@@ -74,7 +75,7 @@
       ***************************************************************** 00640000
        000-MAIN.                                                        00650000
            DISPLAY '********************************'.                  00660000
-           DISPLAY '*** UTIL1000 - CUSTOMER BILL ***'.                  00670000
+           DISPLAY '*** UTIL2000 - CUSTOMER BILL ***'.                  00670000
            DISPLAY '********************************'.                  00680000
            DISPLAY ' '.                                                 00690000
                                                                         00700000
