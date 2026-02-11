@@ -1,8 +1,8 @@
        IDENTIFICATION DIVISION.                                         00010000
-       PROGRAM-ID. UTIL1000.                                            00020000
+       PROGRAM-ID. UTIL2000.                                            00020002
       ***************************************************************** 00030000
-      *  Programmer.:                                                   00040000
-      *  Date.......:                                                   00050000
+      *  Programmer.: Kirby Dunker                                      00040001
+      *  Date.......: 2/10/2026                                         00050001
       *  GitHub URL.:                                                   00060000
       *  Description:                                                   00070000
       ***************************************************************** 00080000
@@ -26,6 +26,16 @@
            05  WS-C1-KWH            PIC 9(5)    VALUE 350.              00260000
            05  WS-C1-FEE            PIC 9(3)V99 VALUE 14.95.            00270000
                                                                         00280000
+       01  WS-CUST2.                                                    00281001
+           05  WS-C2-NAME           PIC X(12)   VALUE 'CUST-BRAVO  '.   00282001
+           05  WS-C2-KWH            PIC 9(5)    VALUE 925.              00283001
+           05  WS-C2-FEE            PIC 9(3)V99 VALUE 14.95.            00284001
+                                                                        00285001
+       01  WS-CUST3.                                                    00286001
+           05  WS-C3-NAME           PIC X(12)   VALUE 'CUST-CHARLIE'.   00287001
+           05  WS-C3-KWH            PIC 9(5)    VALUE 1350.             00288001
+           05  WS-C3-FEE            PIC 9(3)V99 VALUE 14.95.            00289001
+                                                                        00289101
       ***************************************************************** 00290000
       * CURRENT "INPUT" FIELDS (LOADED PER CUSTOMER)                    00300000
       ***************************************************************** 00310000
@@ -68,19 +78,35 @@
            DISPLAY '********************************'.                  00680000
            DISPLAY ' '.                                                 00690000
                                                                         00700000
-           PERFORM 500-LOAD-CUST.                                       00710000
+           PERFORM 510-LOAD-CUST-ALPHA                                  00710001
            PERFORM 600-RUN-BILL.                                        00720000
                                                                         00730000
+           PERFORM 520-LOAD-CUST-BRAVO                                  00731001
+           PERFORM 600-RUN-BILL.                                        00732001
+                                                                        00733001
+           PERFORM 530-LOAD-CUST-CHARLIE                                00734001
+           PERFORM 600-RUN-BILL.                                        00735001
+                                                                        00736001
            STOP RUN.                                                    00740000
                                                                         00750000
       ***************************************************************** 00760000
       * MOVE name/kwh/fee from CUST into current fields.                00770000
       ***************************************************************** 00780000
-       500-LOAD-CUST.                                                   00790000
+       510-LOAD-CUST-ALPHA.                                             00790001
            MOVE WS-C1-NAME TO WS-CUST-NAME.                             00800000
            MOVE WS-C1-KWH  TO WS-KWH-USED.                              00810000
            MOVE WS-C1-FEE  TO WS-SERVICE-FEE.                           00820000
                                                                         00830000
+       520-LOAD-CUST-BRAVO.                                             00831001
+           MOVE WS-C2-NAME TO WS-CUST-NAME.                             00832001
+           MOVE WS-C2-KWH  TO WS-KWH-USED.                              00833001
+           MOVE WS-C2-FEE  TO WS-SERVICE-FEE.                           00834001
+                                                                        00835001
+       530-LOAD-CUST-CHARLIE.                                           00836001
+           MOVE WS-C3-NAME TO WS-CUST-NAME.                             00837001
+           MOVE WS-C3-KWH  TO WS-KWH-USED.                              00838001
+           MOVE WS-C3-FEE  TO WS-SERVICE-FEE.                           00839001
+                                                                        00839101
       ***************************************************************** 00840000
       * BILL ROUTINE                                                    00850000
       ***************************************************************** 00860000
@@ -144,9 +170,20 @@
            COMPUTE WS-TIER1-CHARGE ROUNDED =                            01440000
                WS-TIER1-KWH * WS-RATE-TIER1.                            01450000
                                                                         01460000
-           COMPUTE WS-SUBTOTAL = WS-TIER1-CHARGE.                       01470000
+           COMPUTE WS-TIER2-CHARGE ROUNDED =                            01461003
+               WS-TIER2-KWH * WS-RATE-TIER2.                            01462003
+                                                                        01463003
+           COMPUTE WS-TIER3-CHARGE ROUNDED =                            01464003
+               WS-TIER3-KWH * WS-RATE-TIER3.                            01465003
+                                                                        01466003
+           COMPUTE WS-SUBTOTAL =                                        01470003
                                                                         01480000
-           COMPUTE WS-TOTAL-BILL =                                      01490000
+               WS-TIER1-CHARGE                                          01490004
+             + WS-TIER2-CHARGE                                          01491004
+             + WS-TIER3-CHARGE                                          01491104
+                                                                        01491204
+                                                                        01491304
+           COMPUTE WS-TOTAL-BILL =                                      01492004
                WS-SUBTOTAL + WS-SERVICE-FEE.                            01500000
                                                                         01510000
       ***************************************************************** 01520000
