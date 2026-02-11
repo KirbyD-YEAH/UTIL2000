@@ -11,7 +11,7 @@
 1.0
 
 ## Purpose
-This COBOL program displays and calculates electricity bills for a predetermined amount of customers. Each bill is calculated according to the amount of kilowatt-hours used, using a three-tier billing structure.
+This COBOL program displays and calculates electricity bills for a predetermined number of customers. Each bill is calculated according to the amount of kilowatt-hours used, using a three-tier billing structure.
 
 ## Paragraphs
 ```000-MAIN```
@@ -46,16 +46,13 @@ This COBOL program displays and calculates electricity bills for a predetermined
 * Takes the numeric values and puts them in a better format to display them
 * Produces a nice billing report showing the customer's name, the amount of kWh used, the service fee, the tier charges, and the total bill.
 
-## Data Items
-* ```INPUT-VALUES``` - Groups the different program inputs together
-  *   ```INVESTMENT-AMOUNT``` - The initial investment amount to be compounded (principal)
-  *   ```NUMBER-OF-YEARS``` - Number of years to compound the interest for
-  *   ```YEARLY-INTEREST-RATE``` - The interest rate for your investment, compounded annually
-* ```WORK-FIELDS``` - Groups the different fields used in the logic of the program
-  *   ```FUTURE-VALUE``` - The value after compounding
-  *   ```YEAR-COUNTER``` - Tracks the iterations it has compounded the interest for
-  *   ```EDITED-WHOLE-VALUE``` - A formatted data item for outputting values, **whole number** items are moved here before displayed
-  *   ```EDITED-DECIMAL-VALUE``` - A formatted data item for outputting values, **decimal number** items are moved here before displayed
-
-
 ---
+
+## Processing Logic
+1. Display Program Heading.
+2. Load the customer's name, the amount of kWh used, and the service fee.
+3. Initialize tier and billing work areas.
+4. Allocate kWh usage into three tiers.
+5. Calculates tier charges using certain rates.
+6. Computes the subtotal and the final bill.
+7. Shows a formatted display of billing results.
