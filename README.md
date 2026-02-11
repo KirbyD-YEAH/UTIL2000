@@ -29,8 +29,22 @@ This COBOL program displays and calculates electricity bills for a predetermined
      * 300-CALC-CHARGES
      * 400-DISPLAY-RESULTS
 
-```140-DISPLAY-VALUES```
-* Displays the values of ```INVESTMENT-AMOUNT```, ```NUMBER-OF-YEARS```, ```YEARLY-INTEREST-RATE```, and ```FUTURE-VALUE``` in a compact list
+```100-INITIALIZE```
+* This is going to clear off the kWh values, tier charges, subtotal, and total bill.
+* Helps to ensure that each calculation is unique to each customer.
+
+```200-CALC-TIERS```
+* This helps determine how the amount of kWh usage is split up across the tiers.
+* Uses the tier limits to divide up correctly.
+
+```300-CALC-CHARGES```
+* Calculates how much charge for each tier using rounded arithmetic.
+* Takes the charges and adds them up into a subtotal.
+* Adds a service fee to output the final total.
+
+```400-DISPLAY-RESULTS```
+* Takes the numeric values and puts them in a better format to display them
+* Produces a nice billing report showing the customer's name, the amount of kWh used, the service fee, the tier charges, and the total bill.
 
 ## Data Items
 * ```INPUT-VALUES``` - Groups the different program inputs together
