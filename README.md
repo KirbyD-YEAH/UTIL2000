@@ -11,26 +11,30 @@
 1.0
 
 ## Purpose
-This program performs calculations to check the value of a yearly-compounding interest over a set amount of years. It then doubles that initial investment and does the interest calculations. This repeats one more time resulting in the interest values for your investment, double your investment, and quadruple your investment. It then displays all of this in a compact output file. The JCL to run this code is included in the project.
+This COBOL program displays and calculates electricity bills for a predetermined amount of customers. Each bill is calculated according to the amount of kilowatt-hours used, using a three-tier billing structure.
 
 ## Paragraphs
-```000-CALCULATE-FUTURE-VALUES```
-* The driver code for the program. Delegates the work to other paragraphs and doubles ```INVESTMENT-AMOUNT``` after each iteration
-* First it performs ```100-CALCULATE-FUTURE-VALUE``` then it performs ```140-DISPLAY-VALUES``` and finally it doubles ```INVESTMENT-AMOUNT```
+```000-MAIN```
+* The driver code for the program. It displays a heading and then loads and processes three predefined customers of Alpha, Bravo, and Charlie. (NATO Phonetic Alphabet 😉)
+* Then it calls the billing routine for each of the customers and ends.
 
-```100-CALCULATE-FUTURE-VALUE```
-* Handles the loop for calculating future values by performing ```120-CALCULATE-NEXT-FV``` once for every year in ```NUMBER-OF-YEARS```
-* Uses ```YEAR-COUNTER``` to keep track of when it needs to stop
+```510-LOAD-CUST-ALPHA, 520-LOAD-CUST-BRAVO, 530-LOAD-CUST-CHARLIE```
+* This code is going to load up a customer's name, the amount of kWh used, and the service fee into the current working fields.
+* Simulates an input without using tables or other files.
 
-```120-CALCULATE-NEXT-FV```
-* Calculates the next ```FUTURE-VALUE``` and increments ```YEAR-COUNTER``` which is the exit-condition defined in ```100-CALCULATE-FUTURE-VALUE```
+```600-RUN-BILL```
+* This controls the entire billing process for a single customer:
+     * 100-INITIALIZE
+     * 200-CALC-TIERS
+     * 300-CALC-CHARGES
+     * 400-DISPLAY-RESULTS
 
 ```140-DISPLAY-VALUES```
 * Displays the values of ```INVESTMENT-AMOUNT```, ```NUMBER-OF-YEARS```, ```YEARLY-INTEREST-RATE```, and ```FUTURE-VALUE``` in a compact list
 
 ## Data Items
 * ```INPUT-VALUES``` - Groups the different program inputs together
-  *   ```INVESTMENT-AMOUNT``` - The initial investment amount to be compounded (principle)
+  *   ```INVESTMENT-AMOUNT``` - The initial investment amount to be compounded (principal)
   *   ```NUMBER-OF-YEARS``` - Number of years to compound the interest for
   *   ```YEARLY-INTEREST-RATE``` - The interest rate for your investment, compounded annually
 * ```WORK-FIELDS``` - Groups the different fields used in the logic of the program
