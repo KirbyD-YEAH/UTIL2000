@@ -1,12 +1,10 @@
-# **CALC2000**
+# **UTIL2000**
 ---
-<!-- TODO: Capture a photo of this running for later and paste it in the assets folder with this name-->
+
 ![Photo of Output](assets/codeRunning.png)
 
 ## Programmers
-<!-- We use &nbsp to add white space so Github links are aligned -->
-* *Violet French       &nbsp;&nbsp;&nbsp;                      [GitHub](https://github.com/Pirategirl9000)*
-* *Jason Casillas      &nbsp;&nbsp;                            [GitHub](https://github.com/C0rinth1an)*
+<!-- Using &nbsp to add white space so Github links are aligned -->
 * *Bret Dunker         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          [GitHub](https://github.com/KirbyD-YEAH)*
 
 ## Version
@@ -43,5 +41,3 @@ This program performs calculations to check the value of a yearly-compounding in
 
 
 ---
-### Credits
-##### The code here is an adaptation of a script provided by *[Murach's Mainframe Cobol](https://www.murach.com/shop/murachs-mainframe-cobol-detail)*
